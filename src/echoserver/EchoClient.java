@@ -20,18 +20,20 @@ public class EchoClient {
 	  Socket socket = new Socket(server, portNumber);
 
 	  // read byte form keyboard
-	  InputStream is = null;
-	  OutputStream os = null;
-	  int inputbyte = is.read();
-	  while(inputbyte != -1){
-	  	// send byte to server
+	  InputStream is = socket.getInputStream();
+	  OutputStream os = socket.getOutputStream();
+	  int inputbyte;
+	  while((inputbyte = System.in.read())!= -1){
+	  	// write byte
 		os.write(inputbyte);
-		inputbyte = is.read();
+		os.flush();
+		// send byte to server
+		System.out.write(is.read());
+		
 	  }
 	  is.close();
-	  //send single byte to server
-	  //read byte from the server
-	  //print that byte
+	  socket.close();
+	 
 	  
 	  }// end try
 	  catch(IOException ioe){
