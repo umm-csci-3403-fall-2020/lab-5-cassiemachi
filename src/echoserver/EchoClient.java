@@ -21,9 +21,11 @@ public class EchoClient {
 
 	  // read byte form keyboard
 	  InputStream is = null;
+	  OutputStream os = null;
 	  int inputbyte = is.read();
 	  while(inputbyte != -1){
 	  	// send byte to server
+		os.write(inputbyte);
 		inputbyte = is.read();
 	  }
 	  is.close();
