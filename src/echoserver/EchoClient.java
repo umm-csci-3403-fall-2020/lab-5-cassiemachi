@@ -29,6 +29,7 @@ public class EchoClient {
 		os.flush();
 		// send byte to server
 		System.out.write(is.read());
+		System.out.flush();
 		
 	  }
 	  is.close();
