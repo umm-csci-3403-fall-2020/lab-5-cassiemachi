@@ -15,14 +15,20 @@ public class EchoServer {
 	      Socket client = sock.accept();
 	      System.out.println("Got a request!");
 
-	      // Creates new PrintWriter with autoFlush
-	      InputStream input = socket.getInputStream();
-	      PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
+	    
+	      InputStream input = client.getInputStream();
+	      OutputStream output = client.getOutputStream();
 	      
-	      writer.println(input);
+	      
+	      int inputbyte;
+	      while((inputbyte = input.read()) != -1){
+		output.write(inputbyte);
+	      }      
+	      output.flush();
 
-	      client.close();
-		}
+	     client.close();
+	    }
+	    
 	    } catch (IOException ioe){
 		System.out.println("We caught an unexpected error");
 		System.err.println(ioe);
